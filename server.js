@@ -5,6 +5,7 @@ var favicon       = require('serve-favicon');
 var logger        = require('morgan');
 var cookieParser  = require('cookie-parser');
 var bodyParser    = require('body-parser');
+var hbs           = require('hbs');
 
 //var routes        = require('./routes/index');
 //var users         = require('./routes/users');
@@ -38,6 +39,11 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+
+
+require('./app/hbshelpers')(hbs);
+
+
 
 
 // routes ======================================================================

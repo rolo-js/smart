@@ -1,11 +1,20 @@
+var projects = require('../app/api/projects.js');
+
 // app/routes.js
 module.exports = function(app, passport) {
+
+  app.get('/*.html',isLoggedIn,function(req, res, next){
+    console.log(req.path);
+    return next();
+  });
+
 
   // =====================================
   // HOME PAGE (with login links) ========
   // =====================================
-  app.get('/', function(req, res) {
-    res.render('index.hbs'); // load the index.ejs file
+  app.get('/',  isLoggedIn, function(req, res) {
+    res.redirect('index.html');
+    //res.render('index.hbs'); // load the index.ejs file
   });
 
   // =====================================
@@ -19,11 +28,18 @@ module.exports = function(app, passport) {
   });
 
   // process the login form
-  app.post('/login', passport.authenticate('local-login', {
-    successRedirect : '/index.html',//'/profile', // redirect to the secure profile section
-    failureRedirect : '/login', // redirect back to the signup page if there is an error
-    failureFlash : true // allow flash messages
-  }));
+  app.post('/login', function(req, res, next){
+    console.log('authentication in progress');
+    passport.authenticate('local-login', function(err, user, info) {
+      if (err) { return next(err); }
+      if (!user) { return res.redirect('/login'); }
+      req.logIn(user, function(err) {
+        if (err) { return next(err); }
+        console.log('Success authenticating ' + user.local.email)
+        return res.redirect('/index.html');
+      });
+    })(req, res, next);
+  });
 
 
   // =====================================
@@ -62,6 +78,18 @@ module.exports = function(app, passport) {
     req.logout();
     res.redirect('/');
   });
+
+
+  app.get('/api/projects',function(req,res){
+    projects(function(err){console.log(err);},
+    function(data){
+      res.json(data);
+    }
+    );
+  });
+
+
+
 };
 
 
