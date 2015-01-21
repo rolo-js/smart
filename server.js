@@ -44,7 +44,7 @@ app.set('view engine', 'hbs');
 require('./app/hbshelpers')(hbs);
 
 
-
+console.log('dirname = '+ path.join(__dirname,'public'));
 
 // routes ======================================================================
 require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport

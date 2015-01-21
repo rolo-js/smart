@@ -25,6 +25,7 @@ build/Release
 node_modules
 public/vendor
 public/build
+dist
 
 # Users Environment Variables
 .lock-wscript

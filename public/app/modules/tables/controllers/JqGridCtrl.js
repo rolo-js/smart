@@ -8,16 +8,16 @@ define(['../module'], function (module) {
                 {
                     id: "1",
                     date: "2007-10-01",
-                    name: "test",
+                    name: "Rolando Rios Arias",
                     note: "note",
                     amount: "200.00",
-                    tax: "10.00",
+                    tax: "10.0",
                     total: "210.00"
                 },
                 {
                     id: "2",
                     date: "2007-10-02",
-                    name: "test2",
+                    name: "Arias",
                     note: "note2",
                     amount: "300.00",
                     tax: "20.00",
@@ -80,7 +80,7 @@ define(['../module'], function (module) {
                 {
                     id: "9",
                     date: "2007-09-01",
-                    name: "test3",
+                    name: "eeeee",
                     note: "note3",
                     amount: "400.00",
                     tax: "30.00",
@@ -89,7 +89,7 @@ define(['../module'], function (module) {
                 {
                     id: "10",
                     date: "2007-10-01",
-                    name: "test",
+                    name: "Mejor",
                     note: "note",
                     amount: "200.00",
                     tax: "10.00",
